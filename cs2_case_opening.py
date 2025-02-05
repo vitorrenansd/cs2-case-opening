@@ -20,8 +20,13 @@ caseItems = [
 def sortearSkin(itens):
     chances = [item[2] for item in itens]
     itemSorteado = random.choices(itens, weights=chances, k=1)[0]
-    return itemSorteado
+    print(caseName)
+    print(f"Você sorteou: {itemSorteado[0]} | Valor: R${itemSorteado[1]:.2f} | Chance: {itemSorteado[2]}%")
 
-item = sortearSkin(caseItems)
-print('Knife Case 50/50')
-print(f"Você sorteou: {item[0]} | Valor: R${item[1]:.2f} | Chance: {item[2]}%")
+sortearSkin(caseItems)
+sortearSkin(caseItems)
+sortearSkin(caseItems)
+sortearSkin(caseItems)
+sortearSkin(caseItems)
+sortearSkin(caseItems)
+sortearSkin(caseItems)
