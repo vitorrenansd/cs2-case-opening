@@ -18,5 +18,5 @@ knifeCase5050 = [
 
 def sortearSkin(name, quantity, itemsList):
     chances = [item[2] for item in itemsList]
-    drawnItem = random.choices(itemsList, weights=chances, k=1)[0]
+    drawnItem = random.choices(itemsList, weights = chances, k=1)[0]
     print(f"You won a {drawnItem[0]} | Price: R${drawnItem[1]:.2f} | Probability: {drawnItem[2]}%")
