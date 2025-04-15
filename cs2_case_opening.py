@@ -1,22 +1,35 @@
-import random
+from random import randint
 
-knifeCase5050 = [
-    ('\033[1;31mGut Knife | Rust Coat BS\033[m', 834.72, 50),
-    ('\033[1;31mBowie Knife | Tiger Tooth FN\033[m', 1785.18, 20),
-    ('\033[1;31mFalchion Knife | Slaughter FT\033[m', 2315.94, 1.7),
-    ('\033[1;31mFalchion Knife | Slaughter MW\033[m', 2160.42, 12),
-    ('\033[1;31mFalchion Knife | Slaughter FN\033[m', 1890.78, 1),
-    ('\033[1;31mTalon Knife | Ultraviolet BS\033[m', 2528.34, 2),
-    ('\033[1;31mTalon Knife | Ultraviolet WW\033[m', 2836.14, 3),
-    ('\033[1;31mTalon Knife | Ultraviolet FT\033[m', 3022.74, 2),
-    ('\033[1;31mTalon Knife | Ultraviolet MW\033[m', 3809.34, 1),
-    ('\033[1;31mHuntsman Knife | Doppler Phase 1 FN\033[m', 3515.16, 4),
-    ('\033[1;31mButterfly Knife | Lore WW\033[m', 7623.12, 2.5),
-    ('\033[1;31mButterfly Knife | Lore FT\033[m', 8999.28, 0.5),
-    ('\033[1;31mButterfly Knife | Lore MW\033[m', 14199.90, 0.3),
+# ANSI color codes by rarity
+rarityColors = {
+    0: '\033[90m',   # Grey
+    1: '\033[94m',   # Light blue
+    2: '\033[34m',   # Dark blue
+    3: '\033[35m',   # Purple
+    4: '\033[95m',   # Pink
+    5: '\033[91m',   # Red
+    6: '\033[93m',   # Yellow
+}
+resetColor = '\033[0m'
+
+CS2Case = [
+    ('Huntsman Knife | Doppler Phase 1 FN', 5, 800.89, 0.256),
+    ('USP-S | Torque FT', 2, 3.50, 25.0),
+    ('Glock-18 | Bunsen Burner MW', 2, 2.20, 30.0),
+    ('MP7 | Armor Core FN', 1, 0.80, 44.744),
 ]
 
-def sortearSkin(name, quantity, itemsList):
-    chances = [item[2] for item in itemsList]
-    drawnItem = random.choices(itemsList, weights = chances, k=1)[0]
-    print(f"You won a {drawnItem[0]} | Price: R${drawnItem[1]:.2f} | Probability: {drawnItem[2]}%")
+def drawSkin(itemsList):
+    drawNumber = randint(1, 100000)
+    currentRange = 0
+
+    for item in itemsList:
+        name, rarity, price, chance = item
+        itemRange = int(chance * 1000)
+        currentRange += itemRange
+        if drawNumber <= currentRange:
+            color = rarityColors.get(rarity, '')
+            print(f"{color}You won a {name} | Price: US${price:.2f} | Probability: {chance}%{resetColor}")
+            return  
+
+drawSkin(CS2Case)
